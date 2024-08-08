@@ -44,7 +44,6 @@ defmodule Samly.Router do
       |> put_resp_header("x-xss-protection", "1; mode=block")
       |> put_resp_header("x-content-type-options", "nosniff")
       |> then(fn c ->
-          @frame_ancestors |> IO.inspect(label: "FRAME ANCESTORS")
           cond do
             @frame_ancestors -> c
             true -> put_resp_header(c, "x-frame-options", "SAMEORIGIN")
